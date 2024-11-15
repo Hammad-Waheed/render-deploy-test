@@ -1,34 +1,14 @@
-const express = require('express');
-const path = require('path');
-const cors = require("cors");
+// server.js
+const app = require('./app');
+const connectDB = require('./config/db');
 
+const PORT = process.env.PORT || 5000;
 
-// Conditional import for node-fetch
-let fetch;
-if (!globalThis.fetch) {
-    fetch = require('node-fetch');
-} else {
-    fetch = globalThis.fetch;
-}
+const startServer = async () => {
+    await connectDB();
+    app.listen(PORT, () => {
+        console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    });
+};
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Serve static files (HTML, CSS, JS)
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
-
-
-// Fetch exoplanet data and send it to the client
-app.get('/', async (req, res) => {
-   try {
-    res.status(200).send('landing page')
-   } catch (error) {
-    console.log(error)
-   }
-});
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+startServer();
