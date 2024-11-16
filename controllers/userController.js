@@ -39,8 +39,6 @@ exports.createUser = async (req, res, next) => {
             data: result // Only the result from the service
         });
     } catch (error) {
-        console.log(error);
-        
         next(error); // Pass errors to the global error handler
     }
 };

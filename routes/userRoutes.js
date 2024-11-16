@@ -6,17 +6,16 @@ const router = express.Router();
 // Public routes
 router.route('/')
     .post(userController.createUser); // User registration/signup
-
-// Protected routes (requires authentication)
-router.use(authenticate);
 router.route('/login')
     .post(userController.loginUser); // For login
+// Protected routes (requires authentication)
+
 router.route('/')
-    .get(userController.getUsers); // Get all users
+    .get(authenticate, userController.getUsers); // Get all users
 
 router.route('/:id')
-    .get(userController.getUser) // Get user by ID
-    .put(userController.updateUser) // Update user by ID
-    .delete(userController.deleteUser); // Delete user by ID
+    .get(authenticate, userController.getUser) // Get user by ID
+    .put(authenticate, userController.updateUser) // Update user by ID
+    .delete(authenticate, userController.deleteUser); // Delete user by ID
 
 module.exports = router;
