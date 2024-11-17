@@ -13,7 +13,7 @@ const QuestionnaireSchema = new mongoose.Schema({
   },
   hearingProblem: {
     hasProblem: { type: Boolean },
-    affectedEar: { type: String, enum: ['left', 'right'] }
+    affectedEar: { type: String, enum: ['left', 'right','both','none'] }
   },
   healthIssues: {
     highBloodPressure: { type: Boolean },
