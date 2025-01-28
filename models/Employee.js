@@ -6,9 +6,9 @@ const EmployeeSchema = new mongoose.Schema({
     ref: 'User', 
     required: true 
   },
-  employerName: { type: String },
-  department: { type: String },
-  location: { type: String },
+  employer: { type: mongoose.Schema.Types.ObjectId, ref: 'Employer', required: true },
+  department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
+  location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
   jobTitle: { type: String },
 });
 

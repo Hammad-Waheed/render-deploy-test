@@ -1,19 +1,15 @@
 const mongoose = require('mongoose');
 
 const QuestionnaireSchema = new mongoose.Schema({
-  employeeId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Employee', 
-    required: true 
-  },
+  employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Employee', required: true },
   exposureToLoudNoise: {
-    last24Hours: { type: Boolean, required: true },
+    last24Hours: { type: Boolean },
     neededToShout: { type: Boolean },
-    warningMessageShown: { type: Boolean }
+    warningMessageShown: { type: Boolean },
   },
   hearingProblem: {
     hasProblem: { type: Boolean },
-    affectedEar: { type: String, enum: ['left', 'right','both','none'] }
+    affectedEar: { type: String },
   },
   healthIssues: {
     highBloodPressure: { type: Boolean },
@@ -28,12 +24,21 @@ const QuestionnaireSchema = new mongoose.Schema({
       earSurgeries: [
         {
           surgeryType: { type: String },
-          knownDetails: { type: String }
-        }
-      ]
-    }
+          knownDetails: { type: String },
+        },
+      ],
+    },
   },
-  testDate: { type: Date, default: Date.now }
+  airProtectorAvailable: {
+    hasAvailable: { type: Boolean },
+    wearProtector: { type: Boolean },
+    earPlugs: { type: Boolean },
+    earCaps: { type: Boolean },
+    headphones: { type: Boolean },
+    earDefenders: { type: Boolean },
+  },
+  coldInLast14Days: { type: Boolean }, 
+  testDate: { type: Date },
 });
 
 module.exports = mongoose.model('Questionnaire', QuestionnaireSchema);

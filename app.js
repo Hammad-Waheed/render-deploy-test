@@ -6,7 +6,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const questionnaireRoutes = require('./routes/questionnaireRoutes');
-const employeeRoutes = require('./routes/employeeRoutes')
+const employeeRoutes = require('./routes/employeeRoutes');
+const departmentRoutes = require('./routes/DepartmentRoutes');
+const employerRoutes = require('./routes/employerRoutes');
+const locationRoutes = require('./routes/locationRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 dotenv.config();
@@ -23,6 +26,9 @@ app.use(cors());
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/questionnaire', questionnaireRoutes);
 app.use('/api/v1/employee', employeeRoutes);
+app.use('/api/v1/department', departmentRoutes);
+app.use('/api/v1/employer', employerRoutes);
+app.use('/api/v1/location', locationRoutes);
 
 // Error handler
 app.use(errorHandler);
